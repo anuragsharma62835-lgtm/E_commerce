@@ -78,9 +78,10 @@ app.use(
     origin: [
       "https://e-commerce-5jru.vercel.app",
       "http://localhost:5173",
-      "https://e-commerce-git-main-anurags-projects-6158872e.vercel.app",
+      "https://e-commerce-virid-six-12.vercel.app",
     ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
@@ -108,3 +109,7 @@ app.get("/", (req, res) => {
 
 module.exports = app;
 
+app.listen(5000,()=>{
+  console.log('server running on 5000');
+  
+})
