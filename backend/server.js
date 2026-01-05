@@ -45,7 +45,7 @@ app.get("/", async (req, res) => {
   res.send("working");
 });
 
-app.listen(5000, () => {
-  console.log("server running");
-});
+// app.listen(5000, () => {
+//   console.log("server running");
+// });
 module.exports = app;
