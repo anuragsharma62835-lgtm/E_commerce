@@ -20,9 +20,9 @@ database;
 app.use(
   cors({
     origin: [
-      "e-commerce-5jru.vercel.app",
+      "https://e-commerce-5jru.vercel.app",
       "http://localhost:5173",
-      "e-commerce-git-main-anurags-projects-6158872e.vercel.app",
+      "https://e-commerce-git-main-anurags-projects-6158872e.vercel.app",
     ],
   })
 );
@@ -33,13 +33,13 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(express.json());
 app.use("/api", apilimiter);
-app.use(errorhandler);
 app.use("/uploads", express.static("uploads"));
 app.use("/api/product", productRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/admin", adminRoutes);
+app.use(errorhandler);
 
 app.get("/", async (req, res) => {
   res.send("working");
@@ -48,4 +48,4 @@ app.get("/", async (req, res) => {
 app.listen(5000, () => {
   console.log("server running");
 });
-module.exports = app
+module.exports = app;
