@@ -9,7 +9,6 @@ const upload = require("./middleware/upload")
 const database = require("./Database/Database");
 const userRoutes = require('./Routes/UserRoutes')
 const productRoutes = require('./Routes/ProductRoutes')
-// const cartroutes = require('./Routes/CartRoutes');
 const apilimiter = require("./middleware/ratelimiter");
 const errorhandler = require("./middleware/errorhandler");
 const authRoutes = require("./Routes/AuthRoutes")
@@ -39,7 +38,5 @@ app.get("/testingroute", async (req, res) => {
   res.send("working");
 });
 
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`server running perfectly on port :${PORT}`);
-});
+
+module.exports = app
