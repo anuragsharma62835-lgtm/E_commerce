@@ -17,7 +17,9 @@ const adminRoutes = require("./Routes/adminroutes")
 
 database;
 
-app.use(cors())
+app.use(cors({
+  origin:['e-commerce-5jru.vercel.app']
+}))
 
 app.use(express.urlencoded({ extended: true }));
 
