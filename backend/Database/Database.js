@@ -1,0 +1,17 @@
+const mongoose = require("mongoose");
+
+const db = async () => {
+  try {
+    await mongoose.connect(
+      process.env.MONGO_URL
+    );
+    console.log("MongoDB Atlas connected successfully");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error.message);
+    process.exit(1);
+  }
+};
+
+db();
+
+module.exports = db;
