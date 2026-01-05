@@ -36,9 +36,8 @@ app.use("/api/order", orderRoutes);
 app.use("/api/admin",adminRoutes)
 
 
-app.get("/testingroute", async (req, res) => {
+app.get("/", async (req, res) => {
   res.send("working");
 });
-
 
 module.exports = app
