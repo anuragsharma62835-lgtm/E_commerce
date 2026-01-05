@@ -34,7 +34,7 @@ const createOrder = async (req, res) => {
       .status(201)
       .json({ message: "Order placed successfully", order: newOrder });
   } catch (error) {
-    res.status(500).json({ message: "Server error", details: error.message });
+    next(error);
   }
 };
 
@@ -46,7 +46,7 @@ const getOrders = async (req, res) => {
       .sort({ createdAt: -1 });
     res.status(200).json({ orders });
   } catch (error) {
-    res.status(500).json({ message: "Server error", details: error.message });
+    next(error);
   }
 };
 

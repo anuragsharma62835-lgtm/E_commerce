@@ -9,7 +9,7 @@ exports.getAllUsers = async (req, res) => {
       .status(200)
       .json({ message: "users loaded successfully", details: users });
   } catch (error) {
-    res.status(500).json({ message: "error", details: error.message });
+    next(error);
   }
 };
 
@@ -18,7 +18,7 @@ exports.getproducts = async (req, res) => {
     const products = await Product.find();
     res.status(200).json({ message: "all products here", details: products });
   } catch (error) {
-    res.status(500).json({ message: "error", details: error.message });
+    next(error);
   }
 };
 
@@ -32,12 +32,10 @@ exports.deleteuser = async (req, res, next) => {
     }
     const { password, isAdmin, _id, ...userWithoutSensitive } =
       deleteed.toObject();
-    res
-      .status(200)
-      .json({
-        message: "user deleted successfully",
-        details: userWithoutSensitive,
-      });
+    res.status(200).json({
+      message: "user deleted successfully",
+      details: userWithoutSensitive,
+    });
   } catch (err) {
     next(err);
   }
@@ -50,7 +48,7 @@ exports.getallOrders = async (req, res) => {
       .status(200)
       .json({ message: "orders loaded successfully", details: orders });
   } catch (error) {
-    res.status(500).json({ message: "error", details: error.message });
+    next(error);
   }
 };
 
@@ -61,12 +59,10 @@ exports.deleteproduct = async (req, res, next) => {
     if (!deletedproduct) {
       return res.status(404).json({ message: "product not found" });
     }
-    res
-      .status(200)
-      .json({
-        message: "product deleted successfully",
-        details: deletedproduct,
-      });
+    res.status(200).json({
+      message: "product deleted successfully",
+      details: deletedproduct,
+    });
   } catch (err) {
     next(err);
   }
@@ -86,7 +82,7 @@ exports.newProduct = async (req, res) => {
       .status(200)
       .json({ message: "product created successfully", details: product });
   } catch (error) {
-    res.status(500).json({ message: "error", details: error.message });
+    next(error);
   }
 };
 
@@ -97,8 +93,8 @@ exports.everything = async (req, res) => {
     const orders = await Order.countDocuments();
     res
       .status(200)
-      .json({ message: "loading done", details: {users, orders, products} });
+      .json({ message: "loading done", details: { users, orders, products } });
   } catch (error) {
-    res.status(400).json({ message: "server error" });
+    next(error);
   }
 };

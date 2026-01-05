@@ -16,7 +16,6 @@ passport.use(
           user = await User.create({
             name: profile.displayName,
             email: profile.emails[0].value,
-            // password: "GOOGLE_AUTH", // dummy password
             googleId:profile.id,
             provider:'google'
           });

@@ -20,7 +20,7 @@ const sendEmail = async (to, subject, html) => {
     return res
       .status(400)
       .json({
-        details: "error while sending the mail,",
+        message: "error while sending the mail,",
         details: error.message,
       });
   }

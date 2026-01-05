@@ -1,8 +1,8 @@
-const express = require('express')
+const express = require("express");
 const crypto = require("crypto");
 const User = require("../Models/User");
 const sendEmail = require("../utils/sendEmail");
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 
 const forgotPassword = async (req, res) => {
   try {
@@ -45,7 +45,7 @@ const forgotPassword = async (req, res) => {
 
     res.status(200).json({ message: "Reset link sent to email" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 
@@ -83,7 +83,7 @@ const resetPassword = async (req, res) => {
 
     res.status(200).json({ message: "Password reset successful" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    next(error);
   }
 };
 

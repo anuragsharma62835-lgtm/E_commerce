@@ -1,11 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
+import { FaUserShield } from "react-icons/fa";
 
 function Navbar() {
   const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
+  const admin = localStorage.getItem("admin"); 
+
+  const isAdmin = token && admin === "true";
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("admin");
     navigate("/login");
   };
 
@@ -15,7 +21,7 @@ function Navbar() {
         <Link to="/home">Ecommerce</Link>
       </h1>
 
-      <div className="space-x-4">
+      <div className="space-x-4 flex items-center">
         {!token ? (
           <>
             <Link to="/login" className="hover:underline">
@@ -36,6 +42,17 @@ function Navbar() {
             <Link to="/home" className="hover:underline">
               Home
             </Link>
+
+            {isAdmin && (
+              <button
+                onClick={() => navigate("/admin/dashboard")}
+                title="Admin Panel"
+                className="text-white hover:text-yellow-400 transition"
+              >
+                <FaUserShield size={20} />
+              </button>
+            )}
+
             <button
               onClick={handleLogout}
               className="bg-red-500 px-3 py-1 rounded"

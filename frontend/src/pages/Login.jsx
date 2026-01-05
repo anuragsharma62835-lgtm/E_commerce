@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 
 function Login() {
-  document.title='login'
+  document.title = "login";
   const nav = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -18,10 +19,11 @@ function Login() {
       });
 
       localStorage.setItem("token", data.token);
+      localStorage.setItem('admin',data.details.isAdmin);
       toast.success("Login sucess");
       nav("/home");
     } catch (error) {
-      toast.error(error.response.data.message || "login failed");
+      toast.error(error?.response?.data?.message || "login failed");
     }
   };
 
